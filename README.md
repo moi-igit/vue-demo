@@ -17,13 +17,56 @@
 > [!NOTE]
 > 如果您觉得 `SoybeanAdmin`对您有所帮助，或者您喜欢我们的项目，请在 GitHub 上给我们一个 ⭐️。您的支持是我们持续改进和增加新功能的动力！感谢您的支持！
 
+> [!NOTE]
+> `SoybeanAdmin` 快速上手系列视频已在 [Bilibili](https://www.bilibili.com/video/BV1YKdRYXELC) 上线 [点击这里](https://www.bilibili.com/video/BV1YKdRYXELC) 前往查看
+
+<div align="center">
+  <table width="100%">
+    <tr>
+      <td align="left">
+        <table>
+          <tr>
+            <td>
+              <a href="https://ui.soybeanjs.cn">
+                <img alt="SoybeanUI" src="./public/favicon.svg" width="52" />
+              </a>
+            </td>
+            <td>
+              <a href="https://ui.soybeanjs.cn">
+                <img
+                  alt="SoybeanUI"
+                  src="https://img.shields.io/badge/SoybeanUI-Headless%20%2B%20UI-6366f1?style=for-the-badge&labelColor=312e81"
+                />
+              </a>
+            </td>
+          </tr>
+        </table>
+        <strong>面向 Vue 3 的强大而优雅的组件系统，提供无头交互能力与开箱即用的样式封装。</strong><br />
+        <sub>采用 Headless + UI 两层架构，复用底层交互能力，统一上层界面表达。</sub>
+        <br /><br />
+        <img alt="Vue 3" src="https://img.shields.io/badge/Vue%203-Component%20Library-6366f1?style=flat-square&labelColor=4338ca" />
+        <img alt="Headless" src="https://img.shields.io/badge/Headless-Logic%20%26%20State-818cf8?style=flat-square&labelColor=3730a3" />
+        <img alt="Admin" src="https://img.shields.io/badge/Admin-Professional%20UI-a5b4fc?style=flat-square&labelColor=4f46e5" />
+      </td>
+      <td align="right">
+        <a href="https://ui.soybeanjs.cn">
+          <img
+            alt="Visit SoybeanUI"
+            src="https://img.shields.io/badge/%E7%AB%8B%E5%8D%B3%E8%AE%BF%E9%97%AE-ui.soybeanjs.cn-6366f1?style=for-the-badge&labelColor=312e81&logo=vercel&logoColor=white"
+          />
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## 简介
 
-[`SoybeanAdmin`](https://github.com/soybeanjs/soybean-admin) 是一个清新优雅、高颜值且功能强大的后台管理模板，基于最新的前端技术栈，包括 Vue3, Vite5, TypeScript, Pinia 和 UnoCSS。它内置了丰富的主题配置和组件，代码规范严谨，实现了自动化的文件路由系统。此外，它还采用了基于 ApiFox 的在线Mock数据方案。`SoybeanAdmin` 为您提供了一站式的后台管理解决方案，无需额外配置，开箱即用。同样是一个快速学习前沿技术的最佳实践。
+[`SoybeanAdmin`](https://github.com/soybeanjs/soybean-admin) 是一个清新优雅、高颜值且功能强大的后台管理模板，基于最新的前端技术栈，包括 Vue3, Vite8, TypeScript, Pinia 和 UnoCSS。它内置了丰富的主题配置和组件，代码规范严谨，实现了自动化的文件路由系统。此外，它还采用了基于 ApiFox 的在线Mock数据方案。`SoybeanAdmin` 为您提供了一站式的后台管理解决方案，无需额外配置，开箱即用。同样是一个快速学习前沿技术的最佳实践。
 
 ## 特性
 
-- **前沿技术应用**：采用 Vue3, Vite5, TypeScript, Pinia 和 UnoCSS 等最新流行的技术栈。
+- **前沿技术应用**：采用 Vue3, Vite8, TypeScript, Pinia 和 UnoCSS 等最新流行的技术栈。
 - **清晰的项目架构**：采用 pnpm monorepo 架构，结构清晰，优雅易懂。
 - **严格的代码规范**：遵循 [SoybeanJS 规范](https://docs.soybeanjs.cn/zh/standard)，集成了eslint, prettier 和 simple-git-hooks，保证代码的规范性。
 - **TypeScript**： 支持严格的类型检查，提高代码的可维护性。
@@ -34,7 +77,6 @@
 - **丰富的页面组件**：内置多样页面和组件，包括403、404、500页面，以及布局组件、标签组件、主题配置组件等。
 - **命令行工具**：内置高效的命令行工具，git提交、删除文件、发布等。
 - **移动端适配**：完美支持移动端，实现自适应布局。
-
 
 ## 版本
 
@@ -59,11 +101,38 @@
   - [Gitee 仓库](https://gitee.com/honghuangdc/soybean-admin/tree/legacy)
   - [Gitcode 仓库](https://gitcode.com/soybeanjs/soybean-admin/tree/legacy)
 
-
 ## 文档
 
 - [地址](https://docs.soybeanjs.cn)
 - [旧版文档](https://legacy-docs.soybeanjs.cn)
+
+## 合作事项
+
+我们非常感谢大家对 [`SoybeanAdmin`](https://github.com/soybeanjs/soybean-admin) 的支持！为了进一步回馈社区，并助力企业和开发者实现个性化需求，我们现提供多种合作服务，期待与您携手共赢。
+
+##### 1、定制化管理后台开发
+
+针对企业和开发者的特定业务需求，我们提供基于 [`SoybeanAdmin`](https://github.com/soybeanjs/soybean-admin) 的定制化管理后台开发服务。我们的团队具备丰富的行业经验，能够迅速理解并实现您的需求，打造高效、灵活且安全的定制化解决方案。
+
+- **定制开发**：我们将根据您的具体需求，提供从需求分析、UI设计到功能实现的全方位服务，确保项目高效交付。
+- **功能扩展**：在 [`SoybeanAdmin`](https://github.com/soybeanjs/soybean-admin) 基础上，扩展您所需的特定功能模块，提升管理后台的功能和用户体验。
+
+##### 2、企业外包服务
+
+我们承接各类企业级外包项目，特别是在管理后台系统的开发、集成与运维方面。我们以精益求精的态度，确保项目的质量和进度，为您的业务提供强有力的技术支持。
+
+- **项目开发**：无论是全新的项目，还是现有系统的优化与集成，我们都将为您量身打造高效可靠的解决方案。
+- **系统集成与维护**：我们也提供基于 [`SoybeanAdmin`](https://github.com/soybeanjs/soybean-admin) 的系统集成与长期维护服务，确保您的系统稳定、安全地运行。
+
+##### 3、联系方式
+
+如有合作意向或项目咨询，请通过以下方式与我们联系：
+
+- **Email**: [soybeanjs@outlook.com](mailto:soybeanjs@outlook.com)
+- **GitHub Issues**: 欢迎通过 [GitHub Issues](https://github.com/soybeanjs/soybean-admin/issues/new) 联系我们，进行初步的合作洽谈。
+- **商务合作微信**: honghuangdc
+
+期待与您开展深入合作，共同推动 SoybeanAdmin 项目及其在更多领域的成功应用！
 
 ## 示例图片
 
@@ -79,7 +148,6 @@
 ![](https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/soybean-admin-v1-10.png)
 ![](https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/soybean-admin-v1-mobile.png)
 
-
 ## 使用
 
 **环境准备**
@@ -87,8 +155,8 @@
 确保你的环境满足以下要求：
 
 - **git**: 你需要git来克隆和管理项目版本。
-- **NodeJS**: >=18.12.0，推荐 18.19.0 或更高。
-- **pnpm**: >= 8.7.0，推荐 8.14.0 或更高。
+- **NodeJS**: >=20.19.0，推荐 20.19.0 或更高。
+- **pnpm**: >= 10.5.0，推荐 10.5.0 或更高。
 
 **克隆项目**
 
@@ -106,6 +174,7 @@ git clone https://gitcode.com/soybeanjs/soybean-admin.git
 ```bash
 pnpm i
 ```
+
 > 由于本项目采用了 pnpm monorepo 的管理方式，因此请不要使用 npm 或 yarn 来安装依赖。
 
 **启动项目**
@@ -138,6 +207,7 @@ pnpm build
 - [ba](https://github.com/xiatianYa/Ba-Server): 基于goFrame框架开发的后端服务对接soybean-admin,适配动态路由,接口鉴权限。
 - [soybean-admin-go](https://github.com/WgoW/soybean-admin-go):基于gin+gorm框架开发的go语言后端服务对接soybean-admin的example分支,适配动态路由,接口鉴权限。
 
+更多周边生态请翻阅 [周边生态](https://docs.soybeanjs.cn/zh/awesome) 文档。
 
 ## 如何贡献
 
@@ -145,50 +215,44 @@ pnpm build
 
 ## Git 提交规范
 
-本项目已内置 `commit` 命令，您可以通过执行 `pnpm commit` 来生成符合 [Conventional Commits]([conventionalcommits](https://www.conventionalcommits.org/)) 规范的提交信息。在提交PR时，请务必使用 `commit` 命令来创建提交信息，以确保信息的规范性。
-
+本项目已内置 `commit` 命令，您可以通过执行 `pnpm commit` 来生成符合 [Conventional Commits](<[conventionalcommits](https://www.conventionalcommits.org/)>) 规范的提交信息。在提交PR时，请务必使用 `commit` 命令来创建提交信息，以确保信息的规范性。
 
 ## 浏览器支持
 
 推荐使用最新版的 Chrome 浏览器进行开发，以获得更好的体验。
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png" alt="IE" width="24px" height="24px"  />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) |
-| --- | --- | --- | --- | --- |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| not support                                                                                                                                                                                                                             | last 2 versions                                                                                                                                                                               | last 2 versions                                                                                                                                                                                       | last 2 versions                                                                                                                                                                                    | last 2 versions                                                                                                                                                                                    |
 
 ## 开源作者
 
 [Soybean](https://github.com/honghuangdc)
 
-
 ## 贡献者
 
 感谢以下贡献者的贡献。如果您想为本项目做出贡献，请参考 [如何贡献](#如何贡献)。
 
-<a href="https://github.com/soybeanjs/soybean-admin/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=soybeanjs/soybean-admin" />
+<a href="https://github.com/soybeanjs/soybean-admin-antd/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=soybeanjs/soybean-admin-antd" />
+</a>
+
+---
+
+以下是近一年中活跃度较高的贡献者，感谢各位的支持，让项目得以持续发展。
+
+<a href="https://openomy.com/soybeanjs/soybean-admin-antd" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://www.openomy.com/svg?repo=soybeanjs/soybean-admin-antd&chart=list&latestMonth=12" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
 </a>
 
 ## 交流
 
-`SoybeanAdmin` 是完全开源免费的项目，在帮助开发者更方便地进行中大型管理系统开发，同时也提供微信和 QQ 交流群，使用问题欢迎在群内提问。
+`SoybeanAdmin` 是完全开源免费的项目，在帮助开发者更方便地进行中大型管理系统开发，同时提供飞书群供大家交流，使用问题欢迎在群内提问。
 
-  <div>
-    <p>QQ交流群</p>
-    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/qq-soybean-admin-5.jpg" style="width:200px" />
-  </div>
-  <!-- <div>
-    <p>微信群</p>
-    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/picgo/soybean-admin-wechat-0620.jpg" style="width:200px" />
-  </div> -->
-  <div>
-    <p>添加下面微信邀请进微信群</p>
-    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/wechat-soybeanjs.jpg" style="width:200px" />
-  </div>
-  <div>
-    <p>添加 Soybean 的微信，业务咨询、合作、项目架构、一对一指导等</p>
-    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/wechat-soybean.jpg" style="width:200px" />
-  </div>
+<div>
+  <p>飞书群</p>
+  <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/feishu-soybean-admin.png" style="width:200px" />
+</div>
 
 ## Star 趋势
 
