@@ -38,6 +38,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd /opt/apps/fba-frontend
-            docker compose pull
-            docker compose up -d
+            cd /opt/apps/project-a
+            docker compose pull frontend
+            docker compose up -d frontend
