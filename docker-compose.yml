@@ -1,6 +1,6 @@
 services:
   fba_frontend:
-    build: .
+    image: ghcr.io/moi-igit/vue-demo:latest
     container_name: fba_frontend
     restart: always
     ports:
