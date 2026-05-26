@@ -1,10 +1,10 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useBoolean } from '@sa/hooks';
-import { useAntdForm, useFormRules } from '@/hooks/common/form';
-import { fetchCreateRole, fetchUpdateRole } from '@/service/api';
-import { $t } from '@/locales';
 import { enableStatusOptions } from '@/constants/business';
+import { fetchCreateRole, fetchUpdateRole } from '@/service/api';
+import { useAntdForm, useFormRules } from '@/hooks/common/form';
+import { $t } from '@/locales';
 import MenuAuthModal from './menu-auth-modal.vue';
 import ButtonAuthModal from './button-auth-modal.vue';
 

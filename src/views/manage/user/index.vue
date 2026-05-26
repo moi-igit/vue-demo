@@ -1,9 +1,9 @@
 <script setup lang="tsx">
 import { Button, Popconfirm, Tag } from 'ant-design-vue';
+import { enableStatusRecord, userGenderRecord } from '@/constants/business';
 import { fetchDeleteUser, fetchGetUserList } from '@/service/api';
 import { useTable, useTableOperate, useTableScroll } from '@/hooks/common/table';
 import { $t } from '@/locales';
-import { enableStatusRecord, userGenderRecord } from '@/constants/business';
 import UserOperateDrawer from './modules/user-operate-drawer.vue';
 import UserSearch from './modules/user-search.vue';
 
@@ -176,7 +176,7 @@ function edit(id: number) {
       :title="$t('page.manage.user.title')"
       :bordered="false"
       :body-style="{ flex: 1, overflow: 'hidden' }"
-      class="flex-col-stretch sm:flex-1-hidden card-wrapper"
+      class="flex-col-stretch card-wrapper sm:flex-1-hidden"
     >
       <template #extra>
         <TableHeaderOperation

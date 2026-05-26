@@ -2,7 +2,6 @@ import type { FlatResponseData } from '@sa/axios';
 import { generatedRoutes } from '@/router/elegant/routes';
 import { request } from '../request';
 
-
 type UserUpsertModel = Pick<
   Api.SystemManage.User,
   'userName' | 'nickName' | 'userPhone' | 'userEmail' | 'userRoles' | 'deptId'
@@ -188,7 +187,10 @@ function buildMenuTree(items: Api.SystemManage.FbaMenu[]) {
 
 /** 递归收集本地生成路由的名称 */
 function routeNames(routes: typeof generatedRoutes): string[] {
-  return routes.flatMap(route => [String(route.name), ...routeNames(((route as any).children || []) as typeof generatedRoutes)]);
+  return routes.flatMap(route => [
+    String(route.name),
+    ...routeNames(((route as any).children || []) as typeof generatedRoutes)
+  ]);
 }
 
 /** 获取角色分页列表 */
@@ -216,11 +218,13 @@ export async function fetchGetAllRoles(): Promise<FlatResponseData<Api.SystemMan
   });
 
   return mapFlatData(result, data =>
-    data.filter(item => item.status === 1).map(item => ({
-      id: item.id,
-      roleName: item.name,
-      roleCode: String(item.id)
-    }))
+    data
+      .filter(item => item.status === 1)
+      .map(item => ({
+        id: item.id,
+        roleName: item.name,
+        roleCode: String(item.id)
+      }))
   );
 }
 

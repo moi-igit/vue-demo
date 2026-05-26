@@ -1,9 +1,9 @@
 <script setup lang="tsx">
 import { Button, Popconfirm, Tag } from 'ant-design-vue';
+import { enableStatusRecord } from '@/constants/business';
 import { fetchDeleteRoles, fetchGetRoleList } from '@/service/api';
 import { useTable, useTableOperate, useTableScroll } from '@/hooks/common/table';
 import { $t } from '@/locales';
-import { enableStatusRecord } from '@/constants/business';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
 import RoleSearch from './modules/role-search.vue';
 
@@ -142,7 +142,7 @@ function edit(id: number) {
       :title="$t('page.manage.role.title')"
       :bordered="false"
       :body-style="{ flex: 1, overflow: 'hidden' }"
-      class="flex-col-stretch sm:flex-1-hidden card-wrapper"
+      class="flex-col-stretch card-wrapper sm:flex-1-hidden"
     >
       <template #extra>
         <TableHeaderOperation

@@ -1,9 +1,9 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { useAntdForm, useFormRules } from '@/hooks/common/form';
-import { fetchCreateUser, fetchGetAllRoles, fetchToggleUserStatus, fetchUpdateUser } from '@/service/api';
-import { $t } from '@/locales';
 import { enableStatusOptions, userGenderOptions } from '@/constants/business';
+import { fetchCreateUser, fetchGetAllRoles, fetchToggleUserStatus, fetchUpdateUser } from '@/service/api';
+import { useAntdForm, useFormRules } from '@/hooks/common/form';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'UserOperateDrawer'
@@ -63,7 +63,10 @@ function createDefaultModel(): Model {
   };
 }
 
-type RuleKey = Extract<keyof Model, 'userName' | 'password' | 'status' | 'deptId' | 'userRoles' | 'userPhone' | 'userEmail'>;
+type RuleKey = Extract<
+  keyof Model,
+  'userName' | 'password' | 'status' | 'deptId' | 'userRoles' | 'userPhone' | 'userEmail'
+>;
 
 const rules = computed<Record<RuleKey, App.Global.FormRule | App.Global.FormRule[]>>(() => ({
   userName: defaultRequiredRule,
@@ -146,7 +149,12 @@ watch(visible, () => {
         <AInputPassword v-model:value="model.password" :placeholder="$t('page.manage.user.form.password')" />
       </AFormItem>
       <AFormItem :label="$t('page.manage.user.deptId')" name="deptId">
-        <AInputNumber v-model:value="model.deptId" :min="1" class="w-full" :placeholder="$t('page.manage.user.form.deptId')" />
+        <AInputNumber
+          v-model:value="model.deptId"
+          :min="1"
+          class="w-full"
+          :placeholder="$t('page.manage.user.form.deptId')"
+        />
       </AFormItem>
       <AFormItem :label="$t('page.manage.user.userGender')" name="userGender">
         <ARadioGroup v-model:value="model.userGender">
