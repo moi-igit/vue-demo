@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { Button, Popconfirm, Tag } from 'ant-design-vue';
-import { fetchGetRoleList } from '@/service/api';
+import { fetchDeleteRoles, fetchGetRoleList } from '@/service/api';
 import { useTable, useTableOperate, useTableScroll } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { enableStatusRecord } from '@/constants/business';
@@ -111,19 +111,25 @@ const {
   // closeDrawer
 } = useTableOperate(data, getData);
 
+/** 批量删除选中的角色 */
 async function handleBatchDelete() {
-  // request
+  const { error } = await fetchDeleteRoles(checkedRowKeys.value.map(Number));
+
+  if (error) return;
 
   onBatchDeleted();
 }
 
-function handleDelete(id: number) {
-  // request
-  console.log(id);
+/** 删除单个角色 */
+async function handleDelete(id: number) {
+  const { error } = await fetchDeleteRoles([id]);
+
+  if (error) return;
 
   onDeleted();
 }
 
+/** 打开角色编辑抽屉 */
 function edit(id: number) {
   handleEdit(id);
 }

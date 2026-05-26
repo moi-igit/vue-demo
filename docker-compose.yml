@@ -1,0 +1,13 @@
+services:
+  fba_frontend:
+    build: .
+    container_name: fba_frontend
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - fba_network
+
+networks:
+  fba_network:
+    external: true

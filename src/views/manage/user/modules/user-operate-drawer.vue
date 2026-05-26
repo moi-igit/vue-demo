@@ -1,7 +1,7 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useAntdForm, useFormRules } from '@/hooks/common/form';
-import { fetchGetAllRoles } from '@/service/api';
+import { fetchCreateUser, fetchGetAllRoles, fetchToggleUserStatus, fetchUpdateUser } from '@/service/api';
 import { $t } from '@/locales';
 import { enableStatusOptions, userGenderOptions } from '@/constants/business';
 
@@ -29,7 +29,7 @@ const visible = defineModel<boolean>('visible', {
 });
 
 const { formRef, validate, resetFields } = useAntdForm();
-const { defaultRequiredRule } = useFormRules();
+const { defaultRequiredRule, patternRules } = useFormRules();
 
 const title = computed(() => {
   const titles: Record<AntDesign.TableOperateType, string> = {
@@ -41,69 +41,87 @@ const title = computed(() => {
 
 type Model = Pick<
   Api.SystemManage.User,
-  'userName' | 'userGender' | 'nickName' | 'userPhone' | 'userEmail' | 'userRoles' | 'status'
->;
+  'userName' | 'userGender' | 'nickName' | 'userPhone' | 'userEmail' | 'userRoles' | 'status' | 'deptId'
+> & {
+  password?: string;
+};
 
 const model = ref(createDefaultModel());
 
+/** 创建用户表单默认数据 */
 function createDefaultModel(): Model {
   return {
     userName: '',
+    password: '123456',
     userGender: '1',
     nickName: '',
     userPhone: '',
     userEmail: '',
     userRoles: [],
+    deptId: 1,
     status: '1'
   };
 }
 
-type RuleKey = Extract<keyof Model, 'userName' | 'status'>;
+type RuleKey = Extract<keyof Model, 'userName' | 'password' | 'status' | 'deptId' | 'userRoles' | 'userPhone' | 'userEmail'>;
 
-const rules: Record<RuleKey, App.Global.FormRule> = {
+const rules = computed<Record<RuleKey, App.Global.FormRule | App.Global.FormRule[]>>(() => ({
   userName: defaultRequiredRule,
-  status: defaultRequiredRule
-};
+  password: props.operateType === 'add' ? defaultRequiredRule : {},
+  status: defaultRequiredRule,
+  deptId: defaultRequiredRule,
+  userRoles: defaultRequiredRule,
+  userPhone: patternRules.phone,
+  userEmail: patternRules.email
+}));
 
 /** the enabled role options */
-const roleOptions = ref<CommonType.Option<string>[]>([]);
+const roleOptions = ref<CommonType.Option<number>[]>([]);
 
+/** 加载角色下拉选项 */
 async function getRoleOptions() {
   const { error, data } = await fetchGetAllRoles();
 
   if (!error) {
-    const options = data.map(item => ({
+    roleOptions.value = data.map(item => ({
       label: item.roleName,
-      value: item.roleCode
+      value: item.id
     }));
-
-    // the mock data does not have the roleCode, so fill it
-    // if the real request, remove the following code
-    const userRoleOptions = model.value.userRoles.map(item => ({
-      label: item,
-      value: item
-    }));
-    // end
-
-    roleOptions.value = [...userRoleOptions, ...options];
   }
 }
 
+/** 初始化抽屉表单数据 */
 function handleInitModel() {
   model.value = createDefaultModel();
 
   if (props.operateType === 'edit' && props.rowData) {
     Object.assign(model.value, props.rowData);
+    model.value.password = undefined;
   }
 }
 
+/** 关闭用户操作抽屉 */
 function closeDrawer() {
   visible.value = false;
 }
 
+/** 提交新增或编辑用户 */
 async function handleSubmit() {
   await validate();
-  // request
+
+  if (props.operateType === 'add') {
+    const { error } = await fetchCreateUser(model.value);
+    if (error) return;
+  } else if (props.rowData) {
+    const { error } = await fetchUpdateUser(props.rowData.id, model.value);
+    if (error) return;
+
+    if (props.rowData.status !== model.value.status) {
+      const { error: statusError } = await fetchToggleUserStatus(props.rowData.id);
+      if (statusError) return;
+    }
+  }
+
   window.$message?.success($t('common.updateSuccess'));
   closeDrawer();
   emit('submitted');
@@ -124,6 +142,12 @@ watch(visible, () => {
       <AFormItem :label="$t('page.manage.user.userName')" name="userName">
         <AInput v-model:value="model.userName" :placeholder="$t('page.manage.user.form.userName')" />
       </AFormItem>
+      <AFormItem v-if="operateType === 'add'" :label="$t('page.manage.user.password')" name="password">
+        <AInputPassword v-model:value="model.password" :placeholder="$t('page.manage.user.form.password')" />
+      </AFormItem>
+      <AFormItem :label="$t('page.manage.user.deptId')" name="deptId">
+        <AInputNumber v-model:value="model.deptId" :min="1" class="w-full" :placeholder="$t('page.manage.user.form.deptId')" />
+      </AFormItem>
       <AFormItem :label="$t('page.manage.user.userGender')" name="userGender">
         <ARadioGroup v-model:value="model.userGender">
           <ARadio v-for="item in userGenderOptions" :key="item.value" :value="item.value">
@@ -137,7 +161,7 @@ watch(visible, () => {
       <AFormItem :label="$t('page.manage.user.userPhone')" name="userPhone">
         <AInput v-model:value="model.userPhone" :placeholder="$t('page.manage.user.form.userPhone')" />
       </AFormItem>
-      <AFormItem :label="$t('page.manage.user.userEmail')" name="email">
+      <AFormItem :label="$t('page.manage.user.userEmail')" name="userEmail">
         <AInput v-model:value="model.userEmail" :placeholder="$t('page.manage.user.form.userEmail')" />
       </AFormItem>
       <AFormItem :label="$t('page.manage.user.userStatus')" name="status">
@@ -147,10 +171,10 @@ watch(visible, () => {
           </ARadio>
         </ARadioGroup>
       </AFormItem>
-      <AFormItem :label="$t('page.manage.user.userRole')" name="roles">
+      <AFormItem :label="$t('page.manage.user.userRole')" name="userRoles">
         <ASelect
           v-model:value="model.userRoles"
-          multiple
+          mode="multiple"
           :options="roleOptions"
           :placeholder="$t('page.manage.user.form.userRole')"
         />

@@ -1,7 +1,8 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useBoolean } from '@sa/hooks';
 import { useAntdForm, useFormRules } from '@/hooks/common/form';
+import { fetchCreateRole, fetchUpdateRole } from '@/service/api';
 import { $t } from '@/locales';
 import { enableStatusOptions } from '@/constants/business';
 import MenuAuthModal from './menu-auth-modal.vue';
@@ -47,6 +48,7 @@ type Model = Pick<Api.SystemManage.Role, 'roleName' | 'roleCode' | 'roleDesc' | 
 
 const model = ref(createDefaultModel());
 
+/** 创建角色表单默认数据 */
 function createDefaultModel(): Model {
   return {
     roleName: '',
@@ -56,11 +58,10 @@ function createDefaultModel(): Model {
   };
 }
 
-type RuleKey = Exclude<keyof Model, 'roleDesc'>;
+type RuleKey = Exclude<keyof Model, 'roleDesc' | 'roleCode'>;
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
   roleName: defaultRequiredRule,
-  roleCode: defaultRequiredRule,
   status: defaultRequiredRule
 };
 
@@ -68,6 +69,7 @@ const roleId = computed(() => props.rowData?.id || -1);
 
 const isEdit = computed(() => props.operateType === 'edit');
 
+/** 初始化角色表单数据 */
 function handleInitModel() {
   model.value = createDefaultModel();
 
@@ -76,13 +78,23 @@ function handleInitModel() {
   }
 }
 
+/** 关闭角色操作抽屉 */
 function closeDrawer() {
   visible.value = false;
 }
 
+/** 提交新增或编辑角色 */
 async function handleSubmit() {
   await validate();
-  // request
+
+  if (props.operateType === 'add') {
+    const { error } = await fetchCreateRole(model.value);
+    if (error) return;
+  } else if (props.rowData) {
+    const { error } = await fetchUpdateRole(props.rowData.id, model.value);
+    if (error) return;
+  }
+
   window.$message?.success($t('common.updateSuccess'));
   closeDrawer();
   emit('submitted');
@@ -103,7 +115,7 @@ watch(visible, () => {
         <AInput v-model:value="model.roleName" :placeholder="$t('page.manage.role.form.roleName')" />
       </AFormItem>
       <AFormItem :label="$t('page.manage.role.roleCode')" name="roleCode">
-        <AInput v-model:value="model.roleCode" :placeholder="$t('page.manage.role.form.roleCode')" />
+        <AInput v-model:value="model.roleCode" disabled :placeholder="$t('page.manage.role.form.roleCode')" />
       </AFormItem>
       <AFormItem :label="$t('page.manage.role.roleStatus')" name="status">
         <ARadioGroup v-model:value="model.status">

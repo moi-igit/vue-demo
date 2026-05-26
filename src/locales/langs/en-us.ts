@@ -347,6 +347,8 @@ const local: App.I18n.Schema = {
       user: {
         title: 'User List',
         userName: 'User Name',
+        password: 'Password',
+        deptId: 'Department ID',
         userGender: 'Gender',
         nickName: 'Nick Name',
         userPhone: 'Phone Number',
@@ -355,6 +357,8 @@ const local: App.I18n.Schema = {
         userRole: 'User Role',
         form: {
           userName: 'Please enter user name',
+          password: 'Please enter password',
+          deptId: 'Please enter department ID',
           userGender: 'Please select gender',
           nickName: 'Please enter nick name',
           userPhone: 'Please enter phone number',

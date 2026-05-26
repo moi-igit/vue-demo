@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { Button, Popconfirm, Tag } from 'ant-design-vue';
-import { fetchGetUserList } from '@/service/api';
+import { fetchDeleteUser, fetchGetUserList } from '@/service/api';
 import { useTable, useTableOperate, useTableScroll } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { enableStatusRecord, userGenderRecord } from '@/constants/business';
@@ -145,20 +145,25 @@ const {
   // closeDrawer
 } = useTableOperate(data, getData);
 
+/** 批量删除选中的用户 */
 async function handleBatchDelete() {
-  // request
-  // console.log(checkedRowKeys.value);
+  const results = await Promise.all(checkedRowKeys.value.map(id => fetchDeleteUser(Number(id))));
+
+  if (results.some(item => item.error)) return;
 
   onBatchDeleted();
 }
 
-function handleDelete(id: number) {
-  // request
-  console.log(id);
+/** 删除单个用户 */
+async function handleDelete(id: number) {
+  const { error } = await fetchDeleteUser(id);
+
+  if (error) return;
 
   onDeleted();
 }
 
+/** 打开用户编辑抽屉 */
 function edit(id: number) {
   handleEdit(id);
 }

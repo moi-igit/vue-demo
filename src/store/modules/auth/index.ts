@@ -65,7 +65,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
     const { data: loginToken, error } = await fetchLogin(userName, password);
 
-    if (!error) {
+    if (!error && loginToken) {
       const pass = await loginByToken(loginToken);
 
       if (pass) {
@@ -83,17 +83,19 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     endLoading();
   }
 
-  async function loginByToken(loginToken: Api.Auth.LoginToken) {
+  async function loginByToken(loginToken: Api.Auth.LoginToken | Api.Auth.FbaLoginToken) {
+    const accessToken = 'access_token' in loginToken ? loginToken.access_token : loginToken.token;
+    const refreshToken = 'session_uuid' in loginToken ? loginToken.session_uuid : loginToken.refreshToken;
+
     // 1. stored in the localStorage, the later requests need it in headers
-    localStg.set('token', loginToken.token);
-    localStg.set('refreshToken', loginToken.refreshToken);
+    localStg.set('token', accessToken);
+    localStg.set('refreshToken', refreshToken);
+    token.value = accessToken;
 
     // 2. get user info
     const pass = await getUserInfo();
 
     if (pass) {
-      token.value = loginToken.token;
-
       return true;
     }
 

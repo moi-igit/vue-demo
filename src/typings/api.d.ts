@@ -59,6 +59,28 @@ declare namespace Api {
       refreshToken: string;
     }
 
+    interface FbaLoginToken {
+      access_token: string;
+      access_token_expire_time: string;
+      session_uuid: string;
+      password_expire_days_remaining: number | null;
+      user: FbaUserInfo;
+    }
+
+    interface FbaRefreshToken {
+      access_token: string;
+      access_token_expire_time: string;
+      session_uuid: string;
+    }
+
+    interface FbaUserInfo {
+      id: number;
+      username: string;
+      nickname: string;
+      is_superuser: boolean;
+      roles: string[];
+    }
+
     interface UserInfo {
       userId: string;
       userName: string;
@@ -91,6 +113,62 @@ declare namespace Api {
    * backend api module: "systemManage"
    */
   namespace SystemManage {
+    interface FbaPage<T> {
+      items: T[];
+      total: number;
+      page: number;
+      size: number;
+      total_pages: number;
+    }
+
+    interface FbaRole {
+      id: number;
+      name: string;
+      status: number;
+      remark: string | null;
+      created_time: string;
+      updated_time: string | null;
+    }
+
+    interface FbaRoleRelation {
+      id: number;
+      name: string;
+      status: number;
+    }
+
+    interface FbaUser {
+      id: number;
+      dept_id?: number | null;
+      username: string;
+      nickname: string;
+      email: string | null;
+      phone: string | null;
+      status: number;
+      join_time?: string;
+      created_time?: string;
+      updated_time?: string | null;
+      roles?: FbaRoleRelation[];
+    }
+
+    interface FbaMenu {
+      id: number;
+      title: string;
+      name: string;
+      path: string | null;
+      parent_id: number | null;
+      sort: number;
+      icon: string | null;
+      type: number;
+      component: string | null;
+      perms: string | null;
+      status: number;
+      display: number;
+      cache: number;
+      link: string | null;
+      created_time: string;
+      updated_time: string | null;
+      children?: FbaMenu[] | null;
+    }
     /** role */
     type Role = Common.CommonRecord<{
       /** role name */
@@ -122,6 +200,8 @@ declare namespace Api {
 
     /** user */
     type User = Common.CommonRecord<{
+      /** department id */
+      deptId: number;
       /** user name */
       userName: string;
       /** user gender */
@@ -132,8 +212,10 @@ declare namespace Api {
       userPhone: string;
       /** user email */
       userEmail: string;
-      /** user role code collection */
-      userRoles: string[];
+      /** user role id collection */
+      userRoles: number[];
+      /** initial password when creating user */
+      password?: string;
     }>;
 
     /** user search params */
