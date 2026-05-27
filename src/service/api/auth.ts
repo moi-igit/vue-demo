@@ -61,3 +61,18 @@ export async function fetchRefreshToken(refreshToken: string): Promise<FlatRespo
 export function fetchCustomBackendError(code: string, msg: string) {
   return request({ url: '/auth/error', params: { code, msg } });
 }
+
+/** 退出登录 */
+export function fetchLogout() {
+  return request({ url: '/auth/logout', method: 'post' });
+}
+
+/** 更新当前用户昵称 */
+export function fetchUpdateNickname(nickname: string) {
+  return request({ url: '/sys/users/me/nickname', method: 'put', data: { nickname } });
+}
+
+/** 更新当前用户密码 */
+export function fetchUpdatePassword(old_password: string, new_password: string, confirm_password: string) {
+  return request({ url: '/sys/users/me/password', method: 'put', data: { old_password, new_password, confirm_password } });
+}

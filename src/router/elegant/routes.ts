@@ -265,6 +265,45 @@ export const generatedRoutes: GeneratedRoute[] = [
           roles: ['R_ADMIN'],
           activeMenu: 'manage_user'
         }
+      },
+      {
+        name: 'manage_dept',
+        path: '/manage/dept',
+        component: 'view.manage_dept',
+        meta: {
+          title: 'manage_dept',
+          i18nKey: 'route.manage_dept',
+          icon: 'clarity:organization-line',
+          order: 4,
+          roles: ['R_ADMIN'],
+          keepAlive: true
+        }
+      },
+      {
+        name: 'manage_monitor',
+        path: '/manage/monitor',
+        component: 'view.manage_monitor',
+        meta: {
+          title: 'manage_monitor',
+          i18nKey: 'route.manage_monitor',
+          icon: 'ant-design:monitor-outlined',
+          order: 5,
+          roles: ['R_SUPER'],
+          keepAlive: true
+        }
+      },
+      {
+        name: 'manage_log',
+        path: '/manage/log',
+        component: 'view.manage_log',
+        meta: {
+          title: 'manage_log',
+          i18nKey: 'route.manage_log',
+          icon: 'ant-design:file-text-outlined',
+          order: 6,
+          roles: ['R_ADMIN'],
+          keepAlive: true
+        }
       }
     ]
   },
